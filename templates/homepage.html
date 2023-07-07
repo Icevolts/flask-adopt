@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% block title %} Pets {% endblock %}
+{% block content %}
+
+<h1>Pets</h1>
+
+<div>
+    {% for pet in pets %}
+    <div>
+        <img src="{{pet.image()}}" alt="Photo of cat,dog,or porcupine">
+        <a href="{{url_for('edit_pet', pet_id=pet.id)}}">{{pet.name}}</a>
+        {% if pet.available %} <b>is available!</b> {% endif %}
+    </div>
+    {% else %}
+    <p>No pets here! That's a good problem to have!</p>
+    {% endfor %}
+</div>
+
+<a class="btn btn-outline-secondary" href="{{url_for('new_pet')}}">Add Pet</a>
+
+{% endblock %}
